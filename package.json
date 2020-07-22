@@ -1,0 +1,50 @@
+{
+  "name": "@xpf0000/dom-points",
+  "version": "1.0.1",
+  "author": "250881478@qq.com",
+  "main": "src/index.js",
+  "unpkg": "src/index.js",
+  "browser": "dist/domPoints.js",
+  "private": false,
+  "description": "DOM Tools Collection, include matrixToDeg pointsDistance pointToLineCross pointToLineDistance pointIsInPolygon polygonIsInPolygon clientDeg clientCenterPoint clientOriginalPoints clientBoundsPoints rectBoundsToRect...",
+  "scripts": {
+    "serve": "webpack-dev-server",
+    "build": "webpack ./src/index.js",
+    "lint": "webpack lint"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
+    "eslint": "^7.5.0",
+    "eslint-loader": "^4.0.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "files": [
+    "/dist/*",
+    "/src/*"
+  ],
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xpf0000/dom-points.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xpf0000/dom-points/issues"
+  },
+  "homepage": "https://github.com/xpf0000/dom-points",
+  "keywords": [
+    "dom",
+    "bounds",
+    "points",
+    "boundsRect"
+  ]
+}

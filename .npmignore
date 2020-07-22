@@ -17,6 +17,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Editor directories and files
+.git
+.svn
 .idea
 .vscode
 *.suo

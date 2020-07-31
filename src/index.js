@@ -30,7 +30,7 @@ function pointIsInPolygon (checkPoint, polygonPoints) {
   for (i = 1; i <= pointCount; i++) {
     p2 = polygonPoints[i % pointCount]
     if (
-      checkPoint.x > Math.min(p1.x, p2.x) &&
+      checkPoint.x >= Math.min(p1.x, p2.x) &&
       checkPoint.x <= Math.max(p1.x, p2.x)
     ) {
       if (checkPoint.y <= Math.max(p1.y, p2.y)) {

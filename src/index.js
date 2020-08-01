@@ -196,8 +196,9 @@ function clientCenterPoint (dom, test = false) {
  * @returns {[{x, y}, {x, y}, {x, y}, {x, y}]}
  */
 function clientOriginalPoints (dom, test = false) {
-  let halfWidth = dom.offsetWidth * 0.5
-  let halfHeight = dom.offsetHeight * 0.5
+  let size = domExactSize(dom)
+  let halfWidth = size.width * 0.5
+  let halfHeight = size.height * 0.5
   let center = clientCenterPoint(dom, test)
   let points = [
     {
@@ -327,6 +328,30 @@ function rectBoundsToRect (dom, todom, test = false) {
   return bounds
 }
 
+/**
+ * 获取dom精确宽高
+ * @param dom
+ */
+function domExactSize(dom) {
+  let style = window.getComputedStyle(dom, false)
+  let width = parseFloat(style['width'])
+  let height = parseFloat(style['height'])
+  if (style['box-sizing'] === 'content-box') {
+    let paddingLeft = parseFloat(style['padding-left'])
+    let paddingRight = parseFloat(style['padding-right'])
+    let borderLeft = parseFloat(style['border-left'])
+    let borderRight = parseFloat(style['border-right'])
+    width += paddingLeft + paddingRight + borderLeft + borderRight
+
+    let paddingTop = parseFloat(style['padding-top'])
+    let paddingBottom = parseFloat(style['padding-bottom'])
+    let borderTop = parseFloat(style['border-top'])
+    let borderBottom = parseFloat(style['border-bottom'])
+    height += paddingTop + paddingBottom + borderTop + borderBottom
+  }
+  return {width: width, height: height}
+}
+
 export {
   rotatePoint,
   pointIsInPolygon,
@@ -340,5 +365,6 @@ export {
   clientOriginalPoints,
   clientBoundsPoints,
   rectBoundsToRect,
-  pointIsOnLine
+  pointIsOnLine,
+  domExactSize
 }

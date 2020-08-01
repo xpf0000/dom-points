@@ -207,6 +207,18 @@ the position of a rect which make by dom rotated to toDom
 rectBoundsToRect(document.getElementById('c'), document.getElementById('a'))
 ```
 
+#### domExactSize
+@param dom: html Dom<br>
+@returns {width: number, height: number}<br>
+
+exact size of the dom, offsetWidth is int, and not exact
+
+```html
+<div id="a" style="width: 75.357px;height: 45.259px">
+</div>
+domExactSize(document.getElementById('a'))
+```
+
 ## Contributing
 
 Any contribution to the code or any part of the documentation and any idea and/or suggestion are very welcome.

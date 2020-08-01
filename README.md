@@ -81,6 +81,17 @@ The intersection of a point and a line segment
 pointToLineCross({x: number, y: number}, [{x: number, y: number}, {x: number, y: number}])
 ```
 
+#### pointIsOnLine
+@param p: {x: number, y: number}<br>
+@param line: \[{x: number, y: number}, {x: number, y: number}\]<br>
+@returns {number}<br>
+
+The point is on a line segment
+
+```js
+pointIsOnLine({x: number, y: number}, [{x: number, y: number}, {x: number, y: number}])
+```
+
 #### pointIsInPolygon
 @param p: {x: number, y: number}<br>
 @param polygon: \[{x: number, y: number}, {x: number, y: number}, {x: number, y: number}...\]<br>
@@ -203,6 +214,9 @@ Any contribution to the code or any part of the documentation and any idea and/o
 ``` bash
 # serve with hot reload at localhost:8080
 npm run serve
+
+# run test
+npm run test
 
 # distribution build-bundle
 npm run build

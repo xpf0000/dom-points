@@ -14,6 +14,18 @@ function rotatePoint (center = { x: 0, y: 0 }, p = { x: 0, y: 0 }, deg) {
   return { x: x0, y: y0 }
 }
 /**
+ * 点是否在线段上
+ * @param p
+ * @param line
+ * @returns {boolean|boolean}
+ */
+function pointIsOnLine (p = {x: 0, y: 0}, line = [{x: 0, y: 0}, {x: 0, y: 0}]) {
+  let p0 = line[0]
+  let p1 = line[1]
+  let d = (pointsDistance(p, p0) + pointsDistance(p, p1)) - pointsDistance(p0, p1)
+  return d >= 0 && d < 0.0000001
+}
+/**
  * 点是否在多边形内部
  * @param checkPoint
  * @param polygonPoints
@@ -29,6 +41,9 @@ function pointIsInPolygon (checkPoint, polygonPoints) {
 
   for (i = 1; i <= pointCount; i++) {
     p2 = polygonPoints[i % pointCount]
+    if (pointIsOnLine(checkPoint, [p1, p2])) {
+      return true
+    }
     if (
       checkPoint.x >= Math.min(p1.x, p2.x) &&
       checkPoint.x <= Math.max(p1.x, p2.x)
@@ -324,5 +339,6 @@ export {
   clientCenterPoint,
   clientOriginalPoints,
   clientBoundsPoints,
-  rectBoundsToRect
+  rectBoundsToRect,
+  pointIsOnLine
 }

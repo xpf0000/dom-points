@@ -358,18 +358,19 @@ function domExactSize(dom) {
  * @param line2
  */
 function pointInCrosLine(line1 = [{ x: 0, y: 0 }, { x: 0, y: 0 }], line2 = [{ x: 0, y: 0 }, { x: 0, y: 0 }]) {
+  const point = { x: 0, y: 0 }
   // 判断点是否在线段上
   if (pointIsOnLine(line1[0], line2)) {
-    return line1[0]
+    return Object.assign(point, line1[0])
   }
   if (pointIsOnLine(line1[1], line2)) {
-    return line1[1]
+    return Object.assign(point, line1[1])
   }
   if (pointIsOnLine(line2[0], line1)) {
-    return line2[0]
+    return Object.assign(point, line2[0])
   }
   if (pointIsOnLine(line2[1], line1)) {
-    return line2[1]
+    return Object.assign(point, line2[1])
   }
   // 三角形abc 面积的2倍
   const area_abc = (line1[0].x - line2[0].x) * (line1[1].y - line2[0].y) - (line1[0].y - line2[0].y) * (line1[1].x - line2[0].x)

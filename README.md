@@ -219,6 +219,17 @@ exact size of the dom, offsetWidth is int, and not exact
 domExactSize(document.getElementById('a'))
 ```
 
+#### pointInCrosLine
+@param line1: \[{x: number, y: number}, {x: number, y: number}\]<br>
+@param line2: \[{x: number, y: number}, {x: number, y: number}\]<br>
+@returns {x: number, y: number} || false<br>
+
+two line's cros point
+
+```js
+pointInCrosLine([{x: number, y: number}, {x: number, y: number}], [{x: number, y: number}, {x: number, y: number}])
+```
+
 ## Contributing
 
 Any contribution to the code or any part of the documentation and any idea and/or suggestion are very welcome.

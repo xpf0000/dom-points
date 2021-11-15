@@ -352,6 +352,49 @@ function domExactSize(dom) {
   return {width: width, height: height}
 }
 
+/**
+ * 获取两条直线的交点
+ * @param line1
+ * @param line2
+ */
+function pointInCrosLine(line1 = [{ x: 0, y: 0 }, { x: 0, y: 0 }], line2 = [{ x: 0, y: 0 }, { x: 0, y: 0 }]) {
+  // 判断点是否在线段上
+  if (pointIsOnLine(line1[0], line2)) {
+    return line1[0]
+  }
+  if (pointIsOnLine(line1[1], line2)) {
+    return line1[1]
+  }
+  if (pointIsOnLine(line2[0], line1)) {
+    return line2[0]
+  }
+  if (pointIsOnLine(line2[1], line1)) {
+    return line2[1]
+  }
+  // 三角形abc 面积的2倍
+  const area_abc = (line1[0].x - line2[0].x) * (line1[1].y - line2[0].y) - (line1[0].y - line2[0].y) * (line1[1].x - line2[0].x)
+  // 三角形abd 面积的2倍
+  const area_abd = (line1[0].x - line2[1].x) * (line1[1].y - line2[1].y) - (line1[0].y - line2[1].y) * (line1[1].x - line2[1].x)
+  // 面积符号相同则两点在线段同侧,不相交 (对点在线段上的情况,本例当作不相交处理);
+  if ( area_abc*area_abd>=0 ) {
+    return false
+  }
+  // 三角形cda 面积的2倍
+  const area_cda = (line2[0].x - line1[0].x) * (line2[1].y - line1[0].y) - (line2[0].y - line1[0].y) * (line2[1].x - line1[0].x)
+  // 三角形cdb 面积的2倍
+  // 注意: 这里有一个小优化.不需要再用公式计算面积,而是通过已知的三个面积加减得出.
+  const area_cdb = area_cda + area_abc - area_abd
+  if ( area_cda * area_cdb >= 0 ) {
+    return false
+  }
+
+  //计算交点坐标
+  const t = area_cda / ( area_abd - area_abc )
+  const dx= t*(line1[1].x - line1[0].x)
+  const dy= t*(line1[1].y - line1[0].y)
+  return { x: line1[0].x + dx , y: line1[0].y + dy }
+}
+
 export {
   rotatePoint,
   pointIsInPolygon,
@@ -359,6 +402,7 @@ export {
   pointToLineCross,
   pointToLineDistance,
   pointsDistance,
+  pointInCrosLine,
   matrixToDeg,
   clientDeg,
   clientCenterPoint,
